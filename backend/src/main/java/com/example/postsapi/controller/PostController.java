@@ -1,12 +1,14 @@
 package com.example.postsapi.controller;
 
 import com.example.postsapi.domain.Post;
+import com.example.postsapi.dto.PostRequest;
 import com.example.postsapi.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -74,8 +76,8 @@ public class PostController {
             description = "Post created successfully"
     )
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody Post post) {
-        Post createdPost = postService.createPost(post);
+    public ResponseEntity<Post> createPost(@Valid @RequestBody PostRequest request) {
+        Post createdPost = postService.createPost(request);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -100,9 +102,9 @@ public class PostController {
     public ResponseEntity<Post> updatePost(
             @Parameter(description = "Identifier of the post to update.", example = "1")
             @PathVariable Long id,
-            @RequestBody Post post) {
+            @Valid @RequestBody PostRequest request) {
 
-        Post updatedPost = postService.updatePost(id, post);
+        Post updatedPost = postService.updatePost(id, request);
 
         return ResponseEntity.ok(updatedPost);
     }
