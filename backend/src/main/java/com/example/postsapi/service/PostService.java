@@ -2,6 +2,7 @@ package com.example.postsapi.service;
 
 import com.example.postsapi.domain.Post;
 import com.example.postsapi.dto.PostRequest;
+import com.example.postsapi.exception.PostNotFoundException;
 import com.example.postsapi.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class PostService {
 
     public Post getPostById(Long id) {
         return postRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new PostNotFoundException(id));
     }
 
     public Post createPost(PostRequest request) {
@@ -44,6 +45,10 @@ public class PostService {
     }
 
     public void deletePost(Long id) {
+        
+        if(!postRepository.existsById(id)) {
+            throw new PostNotFoundException(id);
+        }
         postRepository.deleteById(id);
     }
 }
