@@ -1,0 +1,27 @@
+{
+  "name": "angular-springboot-posts",
+  "version": "1.0.0",
+  "description": "Angular + Spring Boot Posts Management — Tutorial Project",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigmakumarwadbude/angular-springboot-posts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sigmakumarwadbude/angular-springboot-posts/issues"
+  },
+  "homepage": "https://github.com/sigmakumarwadbude/angular-springboot-posts#readme",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
